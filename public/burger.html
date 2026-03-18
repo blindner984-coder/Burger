@@ -196,15 +196,18 @@
 
       .hero-title {
         margin: 0;
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(7rem, 21vw, 15rem);
-        line-height: 0.84;
-        letter-spacing: 0.02em;
-        background: linear-gradient(180deg, #fffdfa 0%, var(--gold3) 44%, var(--gold2) 76%, #de9f36 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        text-shadow: 0 14px 50px rgba(0, 0, 0, 0.28);
+        line-height: 1;
+      }
+
+      .hero-wordmark {
+        display: block;
+        width: clamp(320px, 48vw, 680px);
+        aspect-ratio: 4.2 / 1;
+        object-fit: cover;
+        object-position: center center;
+        /* Croppt den Kreis weg und zeigt nur den Schriftzug */
+        clip-path: inset(22% 16% 22% 16%);
+        filter: brightness(1.2) contrast(1.04) drop-shadow(0 14px 50px rgba(0, 0, 0, 0.32));
       }
 
       .subtitle {
@@ -761,7 +764,13 @@
         }
 
         .hero-title {
-          font-size: clamp(5.4rem, 27vw, 8rem);
+          max-width: 100%;
+        }
+
+        .hero-wordmark {
+          width: min(86vw, 520px);
+          aspect-ratio: 3.8 / 1;
+          clip-path: inset(20% 12% 20% 12%);
         }
 
         .eyebrow {
@@ -885,7 +894,7 @@
       <div class="hero-rings"></div>
       <div class="hero-content container">
         <div class="eyebrow">Kuchl · Salzburg · Smash Burger</div>
-        <h1 class="hero-title">BEFO</h1>
+        <h1 class="hero-title"><img class="hero-wordmark" src="./LOGO.jpg" alt="befo" /></h1>
         <p class="subtitle">Handgemacht. Regional. Unwiderstehlich.</p>
         <div class="cta">
           <a class="btn primary" href="#menu">Menü ansehen</a>

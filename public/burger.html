@@ -1009,6 +1009,10 @@
     </div>
 
     <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+
       const nav = document.querySelector("nav");
       const reviews = [
         {
@@ -1090,6 +1094,10 @@
       renderReview(currentReview);
       syncNav();
       window.addEventListener("scroll", syncNav, { passive: true });
+
+      window.addEventListener("load", () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
     </script>
   </body>
 </html>

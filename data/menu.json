@@ -1,0 +1,92 @@
+[
+  {
+    "id": "befo-burger",
+    "name": "Befo Burger",
+    "description": "Cheddar, Gurkerl, Zwiebel, Tomate, Salat",
+    "price": 9.8
+  },
+  {
+    "id": "hamburger",
+    "name": "Hamburger",
+    "description": "Gurkerl, Zwiebel",
+    "price": 8.2
+  },
+  {
+    "id": "cheeseburger",
+    "name": "Cheeseburger",
+    "description": "Cheddar, Gurkerl, Zwiebel",
+    "price": 8.6
+  },
+  {
+    "id": "veggie-burger",
+    "name": "Veggie Burger",
+    "description": "Cheddar, Gurkerl, Zwiebel, Tomate, Salat",
+    "price": 9.4
+  },
+  {
+    "id": "spicy-bbb",
+    "name": "Spicy BBB",
+    "description": "Cheddar, Bacon, Jalapenos",
+    "price": 10.2
+  },
+  {
+    "id": "chicken-burger",
+    "name": "Chicken Burger",
+    "description": "Gurkerl, Salat, Spicy Mayo",
+    "price": 10.4
+  },
+  {
+    "id": "chilli-cheese",
+    "name": "Chilli Cheese",
+    "description": "Eisbergsalat, Jalapenos, Cheesesauce, Cheddar",
+    "price": 10.4
+  },
+  {
+    "id": "frittn-klein",
+    "name": "Frittn klein",
+    "description": "Portion Pommes klein",
+    "price": 3.5
+  },
+  {
+    "id": "frittn-gross",
+    "name": "Frittn gross",
+    "description": "Portion Pommes gross",
+    "price": 5
+  },
+  {
+    "id": "extra-patty",
+    "name": "Extra Patty",
+    "description": "Zusatzpatty",
+    "price": 3.5
+  },
+  {
+    "id": "extra-bacon",
+    "name": "Extra Bacon",
+    "description": "Bacon als Extra",
+    "price": 2.5
+  },
+  {
+    "id": "extra-cheddar",
+    "name": "Extra Cheddar",
+    "description": "Cheddar als Extra",
+    "price": 1.5
+  },
+  {
+    "id": "extra-veggies",
+    "name": "Tomate, Salat, usw.",
+    "description": "Gemuese-Extras",
+    "price": 1.5
+  },
+  {
+    "id": "extra-karamell-zwiebeln",
+    "name": "Karamellisierte Zwiebeln",
+    "description": "Karamellisierte Zwiebeln als Extra",
+    "price": 1.5
+  },
+  {
+    "id": "schueler-menue",
+    "name": "Schüler Menü",
+    "description": "Hamburger oder Cheeseburger plus kleine Frittn",
+    "price": 10.0
+  }
+]

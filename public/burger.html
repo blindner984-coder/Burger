@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEFO Burger - Kuchl · Salzburg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #080705;
+        --bg2: #0e0c09;
+        --cream: #f2e4cc;
+        --gold: #d4943a;
+        --gold2: #f0b85a;
+        --gold3: #f6d58f;
+        --white: #faf5ed;
+        --muted: rgba(242, 228, 204, 0.55);
+        --bdr: rgba(242, 228, 204, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: radial-gradient(circle at 50% 10%, #1e1208 0%, var(--bg) 48%, #060504 100%);
+        color: var(--white);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .shell {
+        position: relative;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        background: transparent;
+        transition: background 0.24s ease, backdrop-filter 0.24s ease, border-color 0.24s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      nav.scrolled {
+        backdrop-filter: none;
+        background: transparent;
+        border-bottom-color: transparent;
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        color: var(--gold);
+      }
+
+      .logo img {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .links {
+        display: flex;
+        gap: 24px;
+      }
+
+      .links a {
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+
+      .links a:hover {
+        color: var(--gold3);
+        opacity: 1;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 100px 0 70px;
+      }
+
+      .hero video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        opacity: 0.78;
+        filter: saturate(1.08) contrast(1.04) brightness(1.03);
+        pointer-events: none;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at center, rgba(8, 7, 5, 0.01) 0%, rgba(8, 7, 5, 0.2) 54%, rgba(8, 7, 5, 0.42) 100%),
+          linear-gradient(to bottom, rgba(8, 7, 5, 0.08) 0%, rgba(8, 7, 5, 0.3) 100%);
+        z-index: 1;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.7px, transparent 0.7px);
+        background-size: 20px 20px;
+        opacity: 0.025;
+        z-index: 1;
+      }
+
+      .hero-rings {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-rings::before,
+      .hero-rings::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 148, 58, 0.08);
+      }
+
+      .hero-rings::before {
+        width: min(46vw, 760px);
+        height: min(46vw, 760px);
+      }
+
+      .hero-rings::after {
+        width: min(72vw, 1080px);
+        height: min(72vw, 1080px);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.44em;
+        text-transform: uppercase;
+        font-size: 0.82rem;
+        color: rgba(212, 148, 58, 0.92);
+        margin-bottom: 8px;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(7rem, 21vw, 15rem);
+        line-height: 0.84;
+        letter-spacing: 0.02em;
+        background: linear-gradient(180deg, #fffdfa 0%, var(--gold3) 44%, var(--gold2) 76%, #de9f36 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 14px 50px rgba(0, 0, 0, 0.28);
+      }
+
+      .subtitle {
+        margin-top: 20px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+        color: rgba(242, 228, 204, 0.94);
+      }
+
+      .cta {
+        margin-top: 48px;
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        min-width: 184px;
+        padding: 18px 30px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        text-decoration: none;
+        font-size: 0.92rem;
+        border: 1px solid rgba(212, 148, 58, 0.45);
+        transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn.primary {
+        background: #d89b3d;
+        color: #16110b;
+      }
+
+      .btn.secondary {
+        background: rgba(9, 8, 6, 0.2);
+        color: var(--gold2);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn.primary:hover {
+        background: #e6ab4e;
+      }
+
+      .btn.secondary:hover {
+        border-color: rgba(240, 184, 90, 0.72);
+        background: rgba(240, 184, 90, 0.08);
+      }
+
+      .discover {
+        margin-top: 74px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        color: rgba(212, 148, 58, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.36em;
+        font-size: 0.76rem;
+      }
+
+      .discover-line {
+        width: 1px;
+        height: 42px;
+        background: linear-gradient(to bottom, rgba(212, 148, 58, 0.75), rgba(212, 148, 58, 0));
+      }
+
+      .section {
+        position: relative;
+        padding: 110px 0;
+      }
+
+      .section-head {
+        margin-bottom: 34px;
+      }
+
+      .section-eyebrow {
+        margin-bottom: 12px;
+        color: rgba(212, 148, 58, 0.82);
+        text-transform: uppercase;
+        letter-spacing: 0.34em;
+        font-size: 0.74rem;
+      }
+
+      .section-title {
+        margin: 0;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.4rem, 8vw, 5rem);
+        letter-spacing: 0.03em;
+        line-height: 0.94;
+      }
+
+      .section-text {
+        max-width: 760px;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1.02rem;
+      }
+
+      .menu-grid {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border: 1px solid var(--bdr);
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(10px);
+      }
+
+      .card {
+        position: relative;
+        padding: 30px 28px;
+        border-right: 1px solid var(--bdr);
+        border-bottom: 1px solid var(--bdr);
+        transition: background 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, rgba(212, 148, 58, 0), rgba(212, 148, 58, 0.72), rgba(212, 148, 58, 0));
+        transform: scaleX(0.2);
+        opacity: 0;
+        transition: transform 0.24s ease, opacity 0.24s ease;
+      }
+
+      .card:nth-child(3n) {
+        border-right: none;
+      }
+
+      .card:nth-last-child(-n + 3) {
+        border-bottom: none;
+      }
+
+      .card:hover {
+        background: rgba(212, 148, 58, 0.045);
+        transform: translateY(-4px);
+      }
+
+      .card:hover::before {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      .nr {
+        font-family: "Cormorant Garamond", serif;
+        color: rgba(212, 148, 58, 0.25);
+        font-size: 2.6rem;
+      }
+
+      .name {
+        margin-top: 8px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.04em;
+      }
+
+      .desc {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .price {
+        margin-top: 16px;
+        color: var(--gold2);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+      }
+
+      .regional {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.16));
+        border-top: 1px solid var(--bdr);
+        border-bottom: 1px solid var(--bdr);
+      }
+
+      .regional-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+        gap: 72px;
+        align-items: start;
+      }
+
+      .philosophy-copy {
+        max-width: 620px;
+      }
+
+      .regional .section-head {
+        margin-bottom: 26px;
+      }
+
+      .regional .section-title {
+        font-size: clamp(3.3rem, 7.2vw, 5.8rem);
+        line-height: 0.9;
+        max-width: 7ch;
+        color: #f5ede1;
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+      }
+
+      .regional-rule {
+        width: 46px;
+        height: 2px;
+        background: linear-gradient(to right, rgba(212, 148, 58, 0.95), rgba(212, 148, 58, 0.1));
+        margin: 28px 0 30px;
+      }
+
+      .philosophy-text {
+        color: rgba(248, 239, 230, 0.9);
+        font-size: 1rem;
+        line-height: 1.58;
+        max-width: 540px;
+      }
+
+      .origin-badge {
+        margin-top: 28px;
+        width: fit-content;
+        min-width: 280px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 26px;
+        border: 1px solid rgba(212, 148, 58, 0.22);
+        background: rgba(255, 255, 255, 0.015);
+      }
+
+      .origin-icon {
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .origin-text {
+        color: rgba(212, 148, 58, 0.92);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        line-height: 1.45;
+        font-size: 0.92rem;
+      }
+
+      .regional-board {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-left: 1px solid rgba(242, 228, 204, 0.08);
+        border-top: 1px solid rgba(242, 228, 204, 0.08);
+        background: rgba(255, 255, 255, 0.01);
+        min-height: 458px;
+      }
+
+      .board-card {
+        position: relative;
+        min-height: 228px;
+        padding: 34px 32px 28px;
+        border-right: 1px solid rgba(242, 228, 204, 0.08);
+        border-bottom: 1px solid rgba(242, 228, 204, 0.08);
+        background: rgba(255, 255, 255, 0.012);
+      }
+
+      .board-card.highlight {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .board-value {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(4rem, 7vw, 5.4rem);
+        line-height: 0.92;
+        color: #e2a53d;
+        letter-spacing: 0.02em;
+      }
+
+      .board-label {
+        margin-top: 12px;
+        color: rgba(212, 148, 58, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 0.82rem;
+      }
+
+      .board-review-title {
+        margin-bottom: 18px;
+        color: rgba(212, 148, 58, 0.82);
+        text-transform: uppercase;
+        letter-spacing: 0.26em;
+        font-size: 0.7rem;
+      }
+
+      .board-stars {
+        color: #e2a53d;
+        letter-spacing: 0.22em;
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+      }
+
+      .board-review-text {
+        max-width: 240px;
+        color: rgba(242, 228, 204, 0.68);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .board-review-author {
+        margin-top: 10px;
+        color: rgba(212, 148, 58, 0.58);
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 0.72rem;
+      }
+
+      .board-review-controls {
+        position: absolute;
+        left: 32px;
+        bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .board-review-lines {
+        display: flex;
+        gap: 6px;
+      }
+
+      .board-review-line {
+        appearance: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        width: 22px;
+        height: 2px;
+        background: rgba(212, 148, 58, 0.22);
+        transition: background 0.2s ease, width 0.2s ease;
+      }
+
+      .board-review-line.active {
+        width: 34px;
+        background: rgba(212, 148, 58, 0.8);
+      }
+
+      .board-review-arrows {
+        display: flex;
+        gap: 8px;
+      }
+
+      .board-review-arrow {
+        appearance: none;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(212, 148, 58, 0.34);
+        color: rgba(212, 148, 58, 0.86);
+        font-size: 0.9rem;
+        background: transparent;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+
+      .board-review-arrow:hover,
+      .board-review-arrow:focus-visible,
+      .board-review-line:hover,
+      .board-review-line:focus-visible {
+        outline: none;
+      }
+
+      .board-review-arrow:hover,
+      .board-review-arrow:focus-visible {
+        background: rgba(212, 148, 58, 0.08);
+        border-color: rgba(212, 148, 58, 0.68);
+        color: rgba(240, 184, 90, 1);
+      }
+
+      .board-dot {
+        margin-top: 28px;
+        margin-left: 96px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e2a53d;
+        box-shadow: 0 0 0 4px rgba(226, 165, 61, 0.08);
+      }
+
+      .stats {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--bdr);
+      }
+
+      .stat {
+        background: var(--bg2);
+        padding: 26px 20px;
+        transition: background 0.22s ease;
+      }
+
+      .stat:hover {
+        background: #12100c;
+      }
+
+      .stat-value {
+        font-family: "Bebas Neue", sans-serif;
+        color: var(--gold);
+        font-size: 2.5rem;
+      }
+
+      .stat-key {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.66rem;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border: 1px solid var(--bdr);
+        margin-top: 24px;
+        background: rgba(255, 255, 255, 0.015);
+      }
+
+      .contact-box {
+        padding: 28px;
+        border-right: 1px solid var(--bdr);
+        transition: background 0.22s ease;
+      }
+
+      .contact-box:hover {
+        background: rgba(212, 148, 58, 0.04);
+      }
+
+      .contact-box:last-child {
+        border-right: none;
+      }
+
+      .contact h3 {
+        margin: 0 0 8px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 0.08em;
+        font-size: 1.2rem;
+      }
+
+      .contact p,
+      .contact a {
+        color: var(--muted);
+        text-decoration: none;
+        line-height: 1.8;
+      }
+
+      .contact a:hover {
+        color: var(--gold2);
+      }
+
+      .contact-actions {
+        margin-top: 26px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .contact-actions .btn {
+        min-width: 0;
+        padding: 14px 22px;
+        font-size: 0.82rem;
+      }
+
+      footer {
+        padding: 72px 24px 44px;
+        text-align: center;
+        border-top: 1px solid var(--bdr);
+        background: radial-gradient(circle at top center, rgba(212, 148, 58, 0.08), transparent 45%);
+      }
+
+      .footer-big {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 10vw, 8rem);
+        color: rgba(242, 228, 204, 0.2);
+        line-height: 0.9;
+      }
+
+      .footer-links {
+        margin: 18px 0 24px;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: rgba(242, 228, 204, 0.5);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 0.72rem;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold2);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html,
+        body {
+          scroll-behavior: auto;
+        }
+
+        .reveal,
+        .btn,
+        .card,
+        .stat,
+        .contact-box,
+        nav {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .nav-inner {
+          padding: 18px 0;
+        }
+
+        .links {
+          display: none;
+        }
+
+        .logo img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .hero {
+          min-height: 94vh;
+          padding: 86px 0 48px;
+        }
+
+        .hero-title {
+          font-size: clamp(5.4rem, 27vw, 8rem);
+        }
+
+        .eyebrow {
+          font-size: 0.68rem;
+          letter-spacing: 0.26em;
+        }
+
+        .subtitle {
+          font-size: 1.45rem;
+        }
+
+        .cta {
+          margin-top: 34px;
+        }
+
+        .btn {
+          width: min(100%, 280px);
+        }
+
+        .discover {
+          margin-top: 52px;
+        }
+
+        .section {
+          padding: 84px 0;
+        }
+
+        .regional-layout {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .regional .section-title {
+          font-size: clamp(3.5rem, 16vw, 5.2rem);
+        }
+
+        .origin-badge {
+          min-width: 0;
+          width: 100%;
+        }
+
+        .regional-board {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .board-card {
+          min-height: 0;
+          padding: 26px 24px;
+        }
+
+        .board-review-text {
+          max-width: none;
+        }
+
+        .board-review-controls {
+          position: static;
+          margin-top: 24px;
+        }
+
+        .board-dot {
+          margin-left: 0;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card,
+        .card:nth-child(3n) {
+          border-right: none;
+          border-bottom: 1px solid var(--bdr);
+        }
+
+        .card:last-child {
+          border-bottom: none;
+        }
+
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .contact {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-box {
+          border-right: none;
+          border-bottom: 1px solid var(--bdr);
+        }
+
+        .contact-box:last-child {
+          border-bottom: none;
+        }
+
+        .footer-links {
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+    <nav>
+      <div class="container nav-inner">
+        <div class="logo">
+          <img src="./LOGO.jpg" alt="BEFO Logo" />
+        </div>
+        <div class="links">
+          <a href="#menu">Menü</a>
+          <a href="#regional">Regional</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero reveal">
+      <video autoplay muted loop playsinline preload="auto" poster="./LOGO.jpg">
+        <source src="./come through 😉 thx @benywein for the clip 🎥.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-rings"></div>
+      <div class="hero-content container">
+        <div class="eyebrow">Kuchl · Salzburg · Smash Burger</div>
+        <h1 class="hero-title">BEFO</h1>
+        <p class="subtitle">Handgemacht. Regional. Unwiderstehlich.</p>
+        <div class="cta">
+          <a class="btn primary" href="#menu">Menü ansehen</a>
+          <a class="btn secondary" href="https://instagram.com/befo_salzburg" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+        <div class="discover">
+          <span>Entdecken</span>
+          <span class="discover-line"></span>
+        </div>
+      </div>
+    </header>
+
+    <section id="menu" class="section container reveal">
+      <div class="section-head">
+        <div class="section-eyebrow">Original Tafelkarte</div>
+        <h2 class="section-title">Unser Menü</h2>
+        <p class="section-text">Direkt von der Speisekarte: unsere Burger-klassiker, Signature-Varianten und Frittn. Frisch zubereitet, regional gedacht und mit ehrlichen Zutaten.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="card"><div class="nr">01</div><div class="name">Befo Burger</div><div class="desc">Cheddar, Gurkerl, Zwiebel, Tomate, Salat.</div><div class="price">9,80 EUR</div></article>
+        <article class="card"><div class="nr">02</div><div class="name">Hamburger</div><div class="desc">Gurkerl, Zwiebel.</div><div class="price">8,20 EUR</div></article>
+        <article class="card"><div class="nr">03</div><div class="name">Cheeseburger</div><div class="desc">Cheddar, Gurkerl, Zwiebel.</div><div class="price">8,60 EUR</div></article>
+        <article class="card"><div class="nr">04</div><div class="name">Veggie Burger</div><div class="desc">Cheddar, Gurkerl, Zwiebel, Tomate, Salat.</div><div class="price">9,40 EUR</div></article>
+        <article class="card"><div class="nr">05</div><div class="name">Spicy BBB</div><div class="desc">Cheddar, Bacon, Jalapenos.</div><div class="price">10,20 EUR</div></article>
+        <article class="card"><div class="nr">06</div><div class="name">Chicken Burger</div><div class="desc">Gurkerl, Salat, Spicy Mayo.</div><div class="price">10,40 EUR</div></article>
+        <article class="card"><div class="nr">07</div><div class="name">Chilli Cheese</div><div class="desc">Eisbergsalat, Jalapenos, Cheesesauce, Cheddar.</div><div class="price">10,40 EUR</div></article>
+        <article class="card"><div class="nr">08</div><div class="name">Frittn</div><div class="desc">Klein 3,50 EUR oder gross 5,00 EUR.</div><div class="price">ab 3,50 EUR</div></article>
+        <article class="card"><div class="nr">09</div><div class="name">Schüler Menü</div><div class="desc">Hamburger oder Cheeseburger plus kleine Frittn.</div><div class="price">10,00 EUR</div></article>
+      </div>
+    </section>
+
+    <section id="regional" class="section regional">
+      <div class="container reveal">
+        <div class="regional-layout">
+          <div class="philosophy-copy">
+            <div class="section-head">
+              <div class="section-eyebrow">Unsere Philosophie</div>
+              <h2 class="section-title">Aus der Region. Für die Region.</h2>
+            </div>
+            <div class="regional-rule"></div>
+            <div class="philosophy-text">Bei BEFO Burger ist Regionalitaet kein Marketingversprechen, es ist unser Fundament. Das Fleisch kommt von der Fleischerei Gumpold aus der Nachbarschaft, die Broetchen werden jeden Morgen frisch von der Biobaeckerei Pfoess geliefert. Kurze Wege, handverlesene Zutaten, voller Geschmack. So einfach ist das.</div>
+            <div class="origin-badge">
+              <div class="origin-icon">⛰️</div>
+              <div class="origin-text">SalzburgerLand<br />Regionale Herkunft</div>
+            </div>
+          </div>
+          <div>
+            <div class="regional-board">
+              <div class="board-card">
+                <div class="board-value">100%</div>
+                <div class="board-label">Regionale Zutaten</div>
+              </div>
+              <div class="board-card highlight">
+                <div class="board-value">4.9★</div>
+                <div class="board-label">Google Bewertung</div>
+              </div>
+              <div class="board-card">
+                <div class="board-review-title">Google Bewertungen</div>
+                <div class="board-stars" id="review-stars">★★★★★</div>
+                <div class="board-review-text" id="review-text">„Die Buns vom Pfoess sind ein Traum. Endlich ein Burger, der wirklich was hermacht. Danke BEFO!”</div>
+                <div class="board-review-author" id="review-author">- Florian S., Google</div>
+                <div class="board-review-controls">
+                  <div class="board-review-lines">
+                    <button class="board-review-line" type="button" data-review-index="0" aria-label="Bewertung 1 anzeigen"></button>
+                    <button class="board-review-line" type="button" data-review-index="1" aria-label="Bewertung 2 anzeigen"></button>
+                    <button class="board-review-line" type="button" data-review-index="2" aria-label="Bewertung 3 anzeigen"></button>
+                    <button class="board-review-line active" type="button" data-review-index="3" aria-label="Bewertung 4 anzeigen"></button>
+                  </div>
+                  <div class="board-review-arrows">
+                    <button class="board-review-arrow" id="review-prev" type="button" aria-label="Vorherige Bewertung">←</button>
+                    <button class="board-review-arrow" id="review-next" type="button" aria-label="Naechste Bewertung">→</button>
+                  </div>
+                </div>
+              </div>
+              <div class="board-card highlight">
+                <div class="board-value">2022</div>
+                <div class="board-label">Gegründet in Kuchl</div>
+              </div>
+            </div>
+            <div class="board-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section container reveal">
+      <div class="section-head">
+        <div class="section-eyebrow">Besuch uns in Kuchl</div>
+        <h2 class="section-title">Kontakt</h2>
+        <p class="section-text">Wenn du Hunger auf BEFO hast, findest du uns direkt in Kuchl. Für Fragen, Reservierungen oder aktuelle Updates erreichst du uns am schnellsten telefonisch oder über Instagram.</p>
+      </div>
+      <div class="contact">
+        <div class="contact-box">
+          <h3>Adresse</h3>
+          <p>Markt 203<br />5431 Kuchl<br />Salzburg, Oesterreich</p>
+        </div>
+        <div class="contact-box">
+          <h3>Oeffnungszeiten</h3>
+          <p>Mo - Do: 11:30-15:00 &amp; 17:00-20:30<br />Freitag: 11:30-20:30<br />Sa &amp; So: Geschlossen</p>
+        </div>
+        <div class="contact-box">
+          <h3>Kontakt</h3>
+          <p><a href="tel:+436602895970">+43 660 289 5970</a><br /><a href="https://instagram.com/befo_salzburg" target="_blank" rel="noreferrer">@befo_salzburg</a></p>
+          <div class="contact-actions">
+            <a class="btn primary" href="tel:+436602895970">Jetzt anrufen</a>
+            <a class="btn secondary" href="https://instagram.com/befo_salzburg" target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-big">BEFO</div>
+      <div class="footer-links">
+        <a href="#menu">Menü</a>
+        <a href="#regional">Regional</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div style="color: var(--muted)">Smash Burger · Kuchl · Salzburg</div>
+    </footer>
+    </div>
+
+    <script>
+      const nav = document.querySelector("nav");
+      const reviews = [
+        {
+          stars: "★★★★★",
+          text: "„Absolut der beste Burger, den ich seit Langem gegessen habe. Regional, saftig und trotzdem klar im Geschmack.”",
+          author: "- Markus R., Google"
+        },
+        {
+          stars: "★★★★★",
+          text: "„Frische Zutaten, freundliches Team und eine Qualitaet, die man sofort merkt. Wir kommen sicher wieder.”",
+          author: "- Sandra K., Google"
+        },
+        {
+          stars: "★★★★★",
+          text: "„Der Smash Burger ist ein echtes Highlight. Aussen knusprig, innen saftig, genau so muss das sein.”",
+          author: "- Thomas W., Google"
+        },
+        {
+          stars: "★★★★★",
+          text: "„Die Buns vom Pfoess sind ein Traum. Endlich ein Burger, der wirklich was hermacht. Danke BEFO!”",
+          author: "- Florian S., Google"
+        }
+      ];
+      const reviewStars = document.getElementById("review-stars");
+      const reviewText = document.getElementById("review-text");
+      const reviewAuthor = document.getElementById("review-author");
+      const reviewDots = Array.from(document.querySelectorAll(".board-review-line"));
+      const reviewPrev = document.getElementById("review-prev");
+      const reviewNext = document.getElementById("review-next");
+      let currentReview = 3;
+
+      const renderReview = (index) => {
+        currentReview = (index + reviews.length) % reviews.length;
+        const review = reviews[currentReview];
+        reviewStars.textContent = review.stars;
+        reviewText.textContent = review.text;
+        reviewAuthor.textContent = review.author;
+
+        for (const dot of reviewDots) {
+          dot.classList.toggle("active", Number(dot.dataset.reviewIndex) === currentReview);
+        }
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          }
+        },
+        { threshold: 0.14 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      const syncNav = () => {
+        if (window.scrollY > 24) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      };
+
+      for (const dot of reviewDots) {
+        dot.addEventListener("click", () => {
+          renderReview(Number(dot.dataset.reviewIndex));
+        });
+      }
+
+      reviewPrev.addEventListener("click", () => {
+        renderReview(currentReview - 1);
+      });
+
+      reviewNext.addEventListener("click", () => {
+        renderReview(currentReview + 1);
+      });
+
+      renderReview(currentReview);
+      syncNav();
+      window.addEventListener("scroll", syncNav, { passive: true });
+    </script>
+  </body>
+</html>
